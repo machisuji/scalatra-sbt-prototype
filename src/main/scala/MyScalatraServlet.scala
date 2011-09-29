@@ -1,23 +1,27 @@
 import org.scalatra._
-import java.net.URL
-import scalate.ScalateSupport
+import org.wandledi.wandlet.scala.{Wandlet, Page}
 
-class MyScalatraServlet extends ScalatraServlet with ScalateSupport {
+class MyScalatraServlet extends ScalatraServlet with Wandlet {
+
+  def httpServletRequest = request // required by Wandlet
 
   get("/") {
     <html>
       <body>
         <h1>Hello, world!</h1>
-        Say <a href="hello-scalate">hello to Scalate</a>.
+        Say <a href="hello-wandledi">hello to Wandledi</a>.
       </body>
     </html>
   }
 
-  notFound {
-    // Try to render a ScalateTemplate if no route matched
-    findTemplate(requestPath) map { path =>
-      contentType = "text/html"
-      layoutTemplate(path)
-    } getOrElse resourceNotFound()
+  get("/hello-wandledi") {
+    val title = "Scalatra: a tiny, Sinatra-like web framework for Scala"
+    val headline = "Welcome to Scalatra"
+    val page = new Page("hello-wandledi.html") {
+      $("title").text = title
+      $("h1").text = headline
+      $("#content").replace(contentsOnly = true, "Hello, Wandledi!")
+    }
+    render(page)
   }
 }
