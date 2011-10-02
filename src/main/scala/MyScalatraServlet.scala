@@ -1,9 +1,10 @@
 import org.scalatra._
 import org.wandledi.wandlet.scala.{Wandlet, Page}
+import org.wandledi.scala._
 
 class MyScalatraServlet extends ScalatraServlet with Wandlet {
 
-  def httpServletRequest = request // required by Wandlet
+  def httpServletResponse = response // required by Wandlet
 
   get("/") {
     <html>
@@ -17,10 +18,10 @@ class MyScalatraServlet extends ScalatraServlet with Wandlet {
   get("/hello-wandledi") {
     val title = "Scalatra: a tiny, Sinatra-like web framework for Scala"
     val headline = "Welcome to Scalatra"
-    val page = new Page("hello-wandledi.html") {
+    val page = new Page("/hello-wandledi.html") {
       $("title").text = title
       $("h1").text = headline
-      $("#content").replace(contentsOnly = true, "Hello, Wandledi!")
+      $("#content") insertLast "Hello, Wandledi!"
     }
     render(page)
   }
