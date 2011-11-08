@@ -8,7 +8,7 @@ seq(webSettings :_*)
 
 libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % "2.0.1",
-  "org.wandledi" %% "wandlet-scala" % "0.8.1-SNAPSHOT",
+  "org.wandledi" %% "wandlet-scala" % "0.8.2-SNAPSHOT",
   "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "jetty",
   "javax.servlet" % "servlet-api" % "2.5" % "provided"
 )
