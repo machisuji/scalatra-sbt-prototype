@@ -1,10 +1,10 @@
-1. Launch [SBT 0.11](https://github.com/harrah/xsbt/wiki).
+1. Launch [SBT 0.11.3](https://github.com/harrah/xsbt/wiki).
 
-        ./sbt
+        sbt
 
-2. Run Jetty
+2. Run Jetty (on the sbt console)
 
-        jetty-run
+        container:start
 
 3. Go to http://localhost:8080/.
 
