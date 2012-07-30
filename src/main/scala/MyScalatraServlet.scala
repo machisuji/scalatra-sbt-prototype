@@ -17,12 +17,17 @@ class MyScalatraServlet extends ScalatraServlet with Wandlet {
 
   get("/hello-wandledi") {
     val title = "Scalatra: a tiny, Sinatra-like web framework for Scala"
-    val headline = "Welcome to Scalatra"
-    val page = new Page("/hello-wandledi.html") {
-      $("title").text = title
-      $("h1").text = headline
-      $("#content") insertLast "Hello, Wandledi!"
-    }
-    render(page)
+    val content = "Hello Wandledi!"
+    val ip = request.getRemoteAddr
+
+    render(HelloWandledi(title, content, ip))
   }
+}
+
+case class HelloWandledi(title: String, content: String, ip: String) extends Page("/hello-wandledi.html") {
+  $("title").text = title
+  $("h1").text = title
+
+  $("#content") insertLast content
+  $("#ip").text = ip
 }
